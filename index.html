@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ClassGuard AI - Behavior Monitor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-container">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+          </div>
+          <div class="brand-text">
+            <h1>ClassGuard AI</h1>
+            <p>Real-time Behavior Monitor</p>
+          </div>
+        </div>
+
+        <div class="widget">
+           <div class="widget-header">
+              <h2>System Status</h2>
+           </div>
+           <div class="metric">
+              <span class="label">AI Model Status</span>
+              <span id="model-status" class="status-badge loading">Loading...</span>
+           </div>
+           <div class="metric">
+              <span class="label">Latency</span>
+              <span id="latency-val" class="value">-- ms</span>
+           </div>
+           <div class="metric">
+              <span class="label">FPS</span>
+              <span id="fps-val" class="value">--</span>
+           </div>
+           <button id="toggle-camera-btn" class="btn primary" disabled>Start Camera</button>
+        </div>
+
+        <div class="widget flex-fill log-widget">
+          <div class="widget-header">
+             <h2>Incident Log</h2>
+             <span id="incident-count" class="badge">0</span>
+          </div>
+          <ul id="incident-log" class="log-list">
+            <!-- Logs dynamically appended here -->
+             <li class="log-item placeholder">No incidents detected.</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <div class="camera-wrapper">
+          <video id="webcam" class="video-feed" autoplay playsinline muted></video>
+          <canvas id="overlay" class="canvas-overlay"></canvas>
+          
+          <div id="loading-overlay" class="overlay-layer">
+             <div class="spinner"></div>
+             <p>Initializing AI Environment...</p>
+          </div>
+          
+          <div id="camera-prompt" class="overlay-layer hidden">
+             <div class="icon-circle">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+             </div>
+             <h3>Camera Access Required</h3>
+             <p>Click "Start Camera" in the sidebar to begin monitoring.</p>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
