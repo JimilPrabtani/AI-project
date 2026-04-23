@@ -27,6 +27,10 @@ let loggedIncidentsCache = new Set(); // To debounce logs
 // Forbidden objects configuration
 const FORBIDDEN_CLASSES = new Set([
   'cell phone', 
+  'phone',
+  'mobile phone',
+  'glass',
+  'scissors',
   'laptop', 
   'knife', 
   'wine glass', 
