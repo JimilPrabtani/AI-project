@@ -46,7 +46,8 @@ async function init() {
     modelStatusBadge.textContent = 'Loading Model...';
     modelStatusBadge.className = 'status-badge loading';
     
-    model = await cocoSsd.load();
+    // Use mobilenet_v2 instead of the lighter default for higher accuracy
+    model = await cocoSsd.load({ base: 'mobilenet_v2' });
     
     modelStatusBadge.textContent = 'Ready';
     modelStatusBadge.className = 'status-badge ready';
@@ -140,7 +141,9 @@ async function detectFrame(timestamp) {
   }
   
   try {
-    const predictions = await model.detect(video);
+    // Detect up to 20 objects, and lower the minimum score threshold to 0.35 (35%)
+    // This helps identify small or partially hidden objects like cell phones
+    const predictions = await model.detect(video, 20, 0.35);
     
     // Performance latency measurement
     const endTime = performance.now();
